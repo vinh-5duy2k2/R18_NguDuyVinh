@@ -5,12 +5,12 @@ Use Testing_system;
 DROP TABLE 	IF EXISTS Department;
 -- Tạo bảng Department
 CREATE TABLE Department (
-    DepartmentID TINYINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+    DepartmentID TINYINT PRIMARY KEY AUTO_INCREMENT,
     DepartmentName VARCHAR(30)
 );
 -- Thêm thông tin vào bản Department
 INSERT INTO Department(DepartmentName) VALUES 
-	('Sale'),
+	('Ban hang'),
     ('Maketing'),
     ('Bao ve'),
     ('Nhan su'),
@@ -26,7 +26,7 @@ DROP TABLE 	IF EXISTS `Position`;
 
 -- Tạo bảng Position
 CREATE TABLE `Position` (
-    PositionID TINYINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+    PositionID TINYINT PRIMARY KEY AUTO_INCREMENT,
     PositionName ENUM('Dev', 'Test', 'Scrum Master', 'PM')
 );
 -- Thêm thông tin vào bảng Position
@@ -41,12 +41,12 @@ DROP TABLE 	IF EXISTS `Account`;
 
 -- Tạo bảng Account
 CREATE TABLE `Account` (
-    AccountID 		INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+    AccountID 		INT PRIMARY KEY AUTO_INCREMENT,
     Email 			VARCHAR(50) UNIQUE KEY,
     Username 		VARCHAR(30) UNIQUE KEY,
     FullName 		VARCHAR(30),
-    DepartmentID 	TINYINT UNSIGNED,
-    PositionID 		TINYINT UNSIGNED,
+    DepartmentID 	TINYINT ,
+    PositionID 		TINYINT ,
     CreateDate 		DATE,
     FOREIGN KEY (DepartmentID)	REFERENCES Department(DepartmentID),
     FOREIGN KEY (PositionID)	REFERENCES `Position`(PositionID)
@@ -76,9 +76,9 @@ DROP TABLE 	IF EXISTS `Group`;
 
 -- Tạo bảng Group
 CREATE TABLE `Group` (
-    GroupID 		TINYINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+    GroupID 		TINYINT PRIMARY KEY AUTO_INCREMENT,
     GroupName 		VARCHAR(30),
-    CreatorID 		INT UNSIGNED,
+    CreatorID 		INT,
     CreateDate 		DATE,
     FOREIGN KEY (CreatorID) REFERENCES `Account`(AccountID) ON DELETE CASCADE
 );
@@ -100,8 +100,8 @@ DROP TABLE 	IF EXISTS GroupAccount;
 
 -- Tạo bảng GroupAccount
 CREATE TABLE GroupAccount (
-    GroupID 		TINYINT UNSIGNED,
-    AccountID 		INT UNSIGNED,
+    GroupID 		TINYINT,
+    AccountID 		INT,
     JoinDate 		DATE,
     PRIMARY KEY (GroupID,AccountID),
 	FOREIGN KEY (GroupID) REFERENCES `Group`(GroupID) ON DELETE CASCADE,
@@ -110,22 +110,22 @@ CREATE TABLE GroupAccount (
 );
 -- Thêm thông tin vào bảng 
 INSERT INTO GroupAccount VALUES 
-	(1,1,'2021-12-04'),
-    (2,2,'2021-11-14'),
-    (3,3,'2021-10-24'),
-    (4,4,'2021-12-24'),
-    (5,5,'2021-09-04'),
-    (6,6,'2021-11-19'),
-    (7,7,'2021-10-12'),
-    (8,8,'2021-12-15'),
-	(9,9,'2021-12-04'),
-    (1,10,'2021-10-06'),
-    (2,11,'2021-09-18'),
-    (3,12,'2021-12-22'),
-    (4,13,'2021-08-19'),
-    (5,14,'2021-11-11'),
-    (6,15,'2021-05-04'),
-    (7,16,'2021-07-18');
+	(1,5,'2021-12-04'),
+    (2,9,'2021-11-14'),
+    (3,8,'2021-10-24'),
+    (4,6,'2021-12-24'),
+    (5,4,'2021-09-04'),
+    (6,1,'2021-11-19'),
+    (7,8,'2021-10-12'),
+    (8,5,'2021-12-15'),
+	(5,7,'2021-12-04'),
+    (4,8,'2021-10-06'),
+    (3,6,'2021-09-18'),
+    (2,5,'2021-12-22'),
+    (8,2,'2021-08-19'),
+    (9,1,'2021-11-11'),
+    (7,4,'2021-05-04'),
+    (4,9,'2021-07-18');
     
     
 -- Xóa bảng TypeQuestion
@@ -133,7 +133,7 @@ DROP TABLE 	IF EXISTS TypeQuestion;
 
 -- Tạo bảng TypeQuestion
 CREATE TABLE TypeQuestion (
-    TypeID 			TINYINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+    TypeID 			TINYINT PRIMARY KEY AUTO_INCREMENT,
     TypeName 		ENUM('Essay', 'Multiple-Choise')
 );-- Thêm thông tin vào bảng 
 INSERT INTO TypeQuestion(TypeName) VALUES
@@ -154,7 +154,7 @@ DROP TABLE 	IF EXISTS CategoryQuestion;
 
 -- Tạo bảng CategoryQuestion
 CREATE TABLE CategoryQuestion (
-    CategoryID 		TINYINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+    CategoryID 		TINYINT PRIMARY KEY AUTO_INCREMENT,
     CategoryName 	VARCHAR(20)
 );
 -- Thêm thông tin vào bảng 
@@ -175,11 +175,11 @@ DROP TABLE 	IF EXISTS Question;
 
 -- Tạo bảng Question
 CREATE TABLE Question (
-    QuestionID 		SMALLINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+    QuestionID 		SMALLINT PRIMARY KEY AUTO_INCREMENT,
     Content 		VARCHAR(100),
-    CategoryID 		TINYINT UNSIGNED,
-    TypeID 			TINYINT UNSIGNED,
-    CreatorID 		INT UNSIGNED,
+    CategoryID 		TINYINT,
+    TypeID 			TINYINT,
+    CreatorID 		INT,
     CreateDate 		DATE,
     FOREIGN KEY (TypeID) REFERENCES TypeQuestion(TypeID) ON DELETE CASCADE,
     FOREIGN KEY (CreatorID) REFERENCES `Account`(AccountID) ON DELETE CASCADE
@@ -196,16 +196,7 @@ INSERT INTO Question VALUES
 	(8,'Hoc lap trinh web hay mobie',8,8,4,'2021-11-24'),
 	(9,'Tri tue nhan tao',9,9,3,'2021-11-24'),
 	(10,'Cong nghe thong tin la gi',10,10,2,'2021-11-24'),
-    (11,'Lap trinh Python nhu the nao',11,11,1,'2021-10-24'),
-    (12,'Cau hoi 1',1,1,1,'2021-10-24'),
-    (13,'Cau hoi 2',2,2,2,'2021-10-24'),
-    (14,'Cau hoi 3',3,3,3,'2021-10-24'),
-    (15,'Cau hoi 4',4,4,4,'2021-10-24'),
-    (16,'Cau hoi 5',5,5,5,'2021-10-24'),
-	(17,'Cau hoi 6',6,6,6,'2021-10-24'),
-    (18,'Cau hoi 7',7,7,7,'2021-10-24'),
-    (19,'Cau hoi 8',8,8,8,'2021-10-24'),
-    (20,'Cau hoi 9',9,9,9,'2021-10-24');
+	(11,'Lap trinh Python nhu the nao',11,11,1,'2021-10-24');
     
     
 -- Xóa bảng Answer
@@ -213,9 +204,9 @@ DROP TABLE 	IF EXISTS Answer;
 
 -- Tạo bảng Answer
 CREATE TABLE Answer (
-    AnswerID 		SMALLINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+    AnswerID 		SMALLINT PRIMARY KEY AUTO_INCREMENT,
     Content 		VARCHAR(100),
-    QuestionID 		SMALLINT UNSIGNED,
+    QuestionID 		SMALLINT,
     isCorret 		ENUM('True','False'),
     FOREIGN KEY (QuestionID) REFERENCES Question(QuestionID) ON DELETE CASCADE
 );
@@ -231,17 +222,7 @@ INSERT INTO Answer(Content,QuestionID,isCorret) VALUES
 	('Hoc web',8,'True'),
 	('Hoc web',9,'False'),
 	('Nganh hoc phat trien nhat hien nay',10,'False'),
-	('Hoc tu Youtube',11,'True'),
-    ('Cau tra loi 1',1,'True'),
-	('Cau tra loi 2',1,'False'),
-    ('Cau tra loi 3',1,'True'),
-	('Cau tra loi 4',2,'False'),
-    ('Cau tra loi 5',3,'True'),
-	('Cau tra loi 6',2,'False'),
-    ('Cau tra loi 7',15,'True'),
-	('Cau tra loi 8',16,'False'),
-    ('Cau tra loi 9',17,'True'),
-	('Cau tra loi 10',2,'False');
+	('Hoc tu Youtube',11,'True');
 
 
 -- Xóa bảng Exam
@@ -249,12 +230,12 @@ DROP TABLE 	IF EXISTS Exam;
 
 -- Tạo bảng Exam
 CREATE TABLE Exam (
-	ExamID 			TINYINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+	ExamID 			TINYINT PRIMARY KEY AUTO_INCREMENT,
     `Code` 			VARCHAR(5) UNIQUE KEY,
     Title 			VARCHAR(30),
-    CategoryID 		TINYINT UNSIGNED,
+    CategoryID 		TINYINT,
     Duration 		TIME,
-    CreatorID 		INT UNSIGNED,
+    CreatorID 		INT,
     CreateDate 		DATE,
 	FOREIGN KEY (CreatorID) REFERENCES `Account`(AccountID) ON DELETE CASCADE,
 	FOREIGN KEY (CategoryID) REFERENCES CategoryQuestion(CategoryID) ON DELETE CASCADE
@@ -269,11 +250,7 @@ INSERT INTO Exam VALUES
 	(5,'VTI5','Thi C++',1,'00:50:00',1,'2020-12-01'),
 	(6,'VTI6','Thi Pascal',1,'00:30:00',1,'2020-11-01'),
 	(7,'VTI7','Thi Javascript',1,'01:15:00',1,'2020-11-15'),
-	(8,'VTI8','Thi Ruby',1,'02:25:00',1,'2020-10-04'),
-    (9,'VTI9','Thi mon 1',1,'01:30:00',1,'2019-01-07'),
-    (10,'VTI10','Thi mon 2',1,'01:20:00',1,'2019-11-06'),
-    (11,'VTI11','Thi mon 3',1,'01:10:00',1,'2019-10-15'),
-    (12,'VTI12','Thi mon 4',1,'02:10:00',1,'2019-12-21');
+	(8,'VTI8','Thi Ruby',1,'02:25:00',1,'2020-10-04');
 
 
 -- Xóa bảng ExamQuestion
@@ -281,8 +258,8 @@ DROP TABLE 	IF EXISTS ExamQuestion;
 
 -- Tạo bảng ExamQuestion
 CREATE TABLE ExamQuestion(
-	ExamID 			TINYINT UNSIGNED,
-    QuestionID 		SMALLINT UNSIGNED,
+	ExamID 			TINYINT,
+    QuestionID 		SMALLINT,
     PRIMARY KEY (ExamID,QuestionID),
 	FOREIGN KEY (ExamID) REFERENCES Exam(ExamID) ON DELETE CASCADE,
 	FOREIGN KEY (QuestionID) REFERENCES Question(QuestionID) ON DELETE CASCADE

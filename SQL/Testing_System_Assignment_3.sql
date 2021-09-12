@@ -51,9 +51,9 @@ LIMIT 5;
 
 
 -- Question10
-SELECT Count(DepartmentID) AS `Count`
+SELECT DepartmentID,Count(DepartmentID) AS `Count`
 FROM `Account`
-WHERE DepartmentID = 2;
+WHERE DepartmentID = 2 OR DepartmentID = 3;
 
 
 -- Question11
@@ -82,6 +82,6 @@ WHERE AccountID =5;
 
 
 -- Question15
-UPDATE groupaccount
+UPDATE `Group`
 SET GroupID = 4
 WHERE AccountID = 5;
