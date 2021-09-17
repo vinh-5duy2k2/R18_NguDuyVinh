@@ -131,14 +131,14 @@ HAVING 		COUNT(a.AccountID) = (	SELECT MIN(Dem_acc)
 SELECT 
 	d.DepartmentID,
     p.positionName,
-	COUNT(a.AccountID) AS SoLuong
+	COUNT(a.AccountID) 	AS SoLuong
 FROM 
-	`Account` a 
-JOIN 		
-	`Position` p 		ON p.PositionID = a.PositionID
-JOIN 	
-	Department d 		ON a.DepartmentID = d.DepartmentID
-GROUP BY d.DepartmentID
+	Department d 		
+LEFT JOIN 		
+	`Account` a 		ON a.DepartmentID = d.DepartmentID
+CROSS JOIN 	
+	`Position` p 		
+GROUP BY d.DepartmentID, p.positionName
 ORDER BY d.DepartmentID;
 
 

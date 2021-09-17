@@ -1,11 +1,12 @@
 use classicmodels;
 -- Lợi nhuận mặt hàng nào nhiều nhất
 
-SELECT 		p.productCode, SUM(od.priceEach*od.quantityOrdered) AS Loi_nhuan
+SELECT 		p.productCode,p.productName, SUM((od.priceEach-p.buyPrice)*od.quantityOrdered) AS Loi_nhuan
 FROM 		products p
 JOIN 		orderdetails od ON od.productCode = p.productCode
 GROUP BY 	p.productCode
-ORDER BY 	Loi_nhuan DESC;
+ORDER BY 	Loi_nhuan DESC
+LIMIT 1;
 
 -- thông kê mỗi thành phố có bao nhiêu employee
 SELECT 
