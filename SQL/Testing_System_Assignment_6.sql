@@ -155,13 +155,13 @@ CREATE PROCEDURE delete_dept(IN  in_DepartmentName VARCHAR(30))
 	BEGIN
 		SELECT 	*
         FROM 	`Account` a
-        JOIN 	Department d ON d.departmentID = a.departmentID
+        JOIN 	Department d 	ON d.departmentID = a.departmentID
         WHERE 	d.departmentName = 'Sale';
         UPDATE 	`Account` a
         SET		a.departmentID = 10
-        WHERE	a.departmentID IN (	SELECT 	d.DepartmentID
-									FROM	Department d
-                                    WHERE 	d.DepartmentName = 'Sale');
+        WHERE	a.departmentID 	= (		SELECT 	d.DepartmentID
+										FROM	Department d
+										WHERE 	d.DepartmentName = 'Sale');
 		DELETE
         FROM 		Department
         WHERE 		DepartmentName = in_departmentName;
@@ -171,5 +171,6 @@ CALL delete_name_department('Bao ve');
 SELECT*FROM department;
 SELECT*FROM account;
 -- Question 12:	Viết store để in ra mỗi tháng có bao nhiêu câu hỏi được tạo ra trong năm nay	
+
 -- Question 13:	Viết store để in ra mỗi tháng có bao nhiêu câu hỏi được tạo trong 6 tháng gần đây nhất 
 	-- Nếu tháng nào không có sẽ in ra là : " Không có câu hỏi nào trong tháng "

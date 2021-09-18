@@ -48,8 +48,8 @@ CREATE TABLE `Account` (
     DepartmentID 	TINYINT UNSIGNED,
     PositionID 		TINYINT UNSIGNED,
     CreateDate 		DATE,
-    FOREIGN KEY (DepartmentID)	REFERENCES Department(DepartmentID),
-    FOREIGN KEY (PositionID)	REFERENCES `Position`(PositionID)
+    FOREIGN KEY (DepartmentID)	REFERENCES Department(DepartmentID) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (PositionID)	REFERENCES `Position`(PositionID) ON DELETE CASCADE ON UPDATE CASCADE
 );
 -- Thêm thông tin vào bảng 
 INSERT INTO `Account`(Email,Username,FullName,DepartmentID,PositionID,CreateDate) VALUES 
@@ -80,7 +80,7 @@ CREATE TABLE `Group` (
     GroupName 		VARCHAR(30),
     CreatorID 		INT UNSIGNED,
     CreateDate 		DATE,
-    FOREIGN KEY (CreatorID) REFERENCES `Account`(AccountID) ON DELETE CASCADE
+    FOREIGN KEY (CreatorID) REFERENCES `Account`(AccountID) ON DELETE CASCADE ON UPDATE CASCADE
 );
 -- Thêm thông tin vào bảng 
 INSERT INTO `Group` (GroupName,CreatorID,CreateDate) VALUES
@@ -104,8 +104,8 @@ CREATE TABLE GroupAccount (
     AccountID 		INT UNSIGNED,
     JoinDate 		DATE,
     PRIMARY KEY (GroupID,AccountID),
-	FOREIGN KEY (GroupID) REFERENCES `Group`(GroupID) ON DELETE CASCADE,
-    FOREIGN KEY (AccountID) REFERENCES `Account`(AccountID) ON DELETE CASCADE
+	FOREIGN KEY (GroupID) REFERENCES `Group`(GroupID) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (AccountID) REFERENCES `Account`(AccountID) ON DELETE CASCADE ON UPDATE CASCADE
 
 );
 -- Thêm thông tin vào bảng 
@@ -188,8 +188,8 @@ CREATE TABLE Question (
     TypeID 			TINYINT UNSIGNED,
     CreatorID 		INT UNSIGNED,
     CreateDate 		DATE,
-    FOREIGN KEY (TypeID) REFERENCES TypeQuestion(TypeID) ON DELETE CASCADE,
-    FOREIGN KEY (CreatorID) REFERENCES `Account`(AccountID) ON DELETE CASCADE
+    FOREIGN KEY (TypeID) REFERENCES TypeQuestion(TypeID) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (CreatorID) REFERENCES `Account`(AccountID) ON DELETE CASCADE ON UPDATE CASCADE
 );
 -- Thêm thông tin vào bảng 
 INSERT INTO Question VALUES
@@ -212,7 +212,9 @@ INSERT INTO Question VALUES
 	(17,'Cau hoi 6',6,6,6,'2021-07-13'),
     (18,'Cau hoi 7',7,7,7,'2021-08-07'),
     (19,'Cau hoi 8',8,8,8,'2021-08-15'),
-    (20,'Cau hoi 9',9,9,9,'2021-09-22');
+    (20,'Cau hoi 9',9,9,9,'2021-09-22'),
+	(21,'Cau hoi 10',7,1,7,'2021-08-07'),
+    (22,'Cau hoi 11',8,1,8,'2021-07-15');
     
     
 -- Xóa bảng Answer
@@ -224,7 +226,7 @@ CREATE TABLE Answer (
     Content 		VARCHAR(100),
     QuestionID 		SMALLINT UNSIGNED,
     isCorret 		ENUM('True','False'),
-    FOREIGN KEY (QuestionID) REFERENCES Question(QuestionID) ON DELETE CASCADE
+    FOREIGN KEY (QuestionID) REFERENCES Question(QuestionID) ON DELETE CASCADE ON UPDATE CASCADE
 );
 -- Thêm thông tin vào bảng 
 INSERT INTO Answer(Content,QuestionID,isCorret) VALUES
@@ -263,8 +265,8 @@ CREATE TABLE Exam (
     Duration 		TIME,
     CreatorID 		INT UNSIGNED,
     CreateDate 		DATE,
-	FOREIGN KEY (CreatorID) REFERENCES `Account`(AccountID) ON DELETE CASCADE,
-	FOREIGN KEY (CategoryID) REFERENCES CategoryQuestion(CategoryID) ON DELETE CASCADE
+	FOREIGN KEY (CreatorID) REFERENCES `Account`(AccountID) ON DELETE CASCADE ON UPDATE CASCADE,
+	FOREIGN KEY (CategoryID) REFERENCES CategoryQuestion(CategoryID) ON DELETE CASCADE ON UPDATE CASCADE
 
 );
 -- Thêm thông tin vào bảng 
@@ -283,6 +285,7 @@ INSERT INTO Exam VALUES
     (12,'VTI12','Thi mon 4',4,'02:10:00',1,'2019-12-21');
 
 
+
 -- Xóa bảng ExamQuestion
 DROP TABLE 	IF EXISTS ExamQuestion;
 
@@ -291,8 +294,8 @@ CREATE TABLE ExamQuestion(
 	ExamID 			TINYINT UNSIGNED,
     QuestionID 		SMALLINT UNSIGNED,
     PRIMARY KEY (ExamID,QuestionID),
-	FOREIGN KEY (ExamID) REFERENCES Exam(ExamID) ON DELETE CASCADE,
-	FOREIGN KEY (QuestionID) REFERENCES Question(QuestionID) ON DELETE CASCADE
+	FOREIGN KEY (ExamID) REFERENCES Exam(ExamID) ON DELETE CASCADE ON UPDATE CASCADE,
+	FOREIGN KEY (QuestionID) REFERENCES Question(QuestionID) ON DELETE CASCADE ON UPDATE CASCADE
 
 );
 
