@@ -19,6 +19,7 @@ INSERT INTO Department(DepartmentName) VALUES
     ('Giam doc'),
 	('Tai chinh'),
     ('Quan ly');
+    INSERT INTO Department(DepartmentName) VALUES      ('Phong Cho');
     
 
 -- Xóa bảng Position
@@ -193,7 +194,7 @@ CREATE TABLE Question (
 );
 -- Thêm thông tin vào bảng 
 INSERT INTO Question VALUES
-<<<<<<< HEAD
+
 	(1,'Lap trinh C nhu the nao',1,1,11,'2021-08-10'),
 	(2,'Lap trinh Java nhu the nao',2,2,10,'2021-05-18'),
 	(3,'Lam sao de hoc lap trinh gioi',3,3,9,'2021-07-22'),
@@ -216,29 +217,7 @@ INSERT INTO Question VALUES
     (20,'Cau hoi 9',9,9,9,'2021-09-22'),
 	(21,'Cau hoi 10',7,1,7,'2021-08-07'),
     (22,'Cau hoi 11',8,1,8,'2021-07-15');
-=======
-	(1,'Lap trinh C nhu the nao',1,1,11,'2021-10-24'),
-	(2,'Lap trinh Java nhu the nao',2,2,10,'2021-10-24'),
-	(3,'Lam sao de hoc lap trinh gioi',3,3,9,'2021-10-22'),
-	(4,'Hoc lap trinh o trung tam nao',4,4,8,'2021-10-29'),
-	(5,'Ngon ngu nao nhieu tien',5,5,7,'2021-11-24'),
-	(6,'Ngon ngu nhieu nguoi dung nhat',6,6,6,'2021-11-24'),
-	(7,'Nen hoc java hay C',7,7,5,'2021-11-24'),
-	(8,'Hoc lap trinh web hay mobie',8,8,4,'2021-11-24'),
-	(9,'Tri tue nhan tao',9,9,3,'2021-11-24'),
-	(10,'Cong nghe thong tin la gi',1,10,2,'2021-11-24'),
-    (11,'Lap trinh Python nhu the nao',2,11,1,'2021-10-24'),
-    (12,'Cau hoi 1',1,1,1,'2021-10-24'),
-    (13,'Cau hoi 2',2,2,2,'2021-10-24'),
-    (14,'Cau hoi 3',3,3,3,'2021-10-24'),
-    (15,'Cau hoi 4',4,4,4,'2021-10-24'),
-    (16,'Cau hoi 5',5,5,5,'2021-10-24'),
-	(17,'Cau hoi 6',6,6,6,'2021-10-24'),
-    (18,'Cau hoi 7',7,7,7,'2021-10-24'),
-    (19,'Cau hoi 8',8,8,8,'2021-10-24'),
-    (20,'Cau hoi 9',9,9,9,'2021-10-24');
->>>>>>> 07c90425054d299ac98b8fe6250c2bf7a724104d
-    
+
     
 -- Xóa bảng Answer
 DROP TABLE 	IF EXISTS Answer;
@@ -274,8 +253,6 @@ INSERT INTO Answer(Content,QuestionID,isCorret) VALUES
 	('Cau tra loi 8',16,'False'),
     ('Cau tra loi 9',17,'True'),
 	('Cau tra loi 10',2,'False');
-
-
 -- Xóa bảng Exam
 DROP TABLE 	IF EXISTS Exam;
 
@@ -306,10 +283,7 @@ INSERT INTO Exam VALUES
     (10,'VTI10','Thi mon 2',2,'01:20:00',1,'2019-11-06'),
     (11,'VTI11','Thi mon 3',3,'01:10:00',1,'2019-10-15'),
     (12,'VTI12','Thi mon 4',4,'02:10:00',1,'2019-12-21');
-<<<<<<< HEAD
 
-=======
->>>>>>> 07c90425054d299ac98b8fe6250c2bf7a724104d
 
 
 -- Xóa bảng ExamQuestion
