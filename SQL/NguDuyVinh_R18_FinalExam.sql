@@ -1,4 +1,5 @@
-DROP 	DATABASE MySQL_FINAL;
+
+DROP 	DATABASE IF EXISTS MySQL_FINAL;
 CREATE 	DATABASE MySQL_FINAL;
 USE 	MySQL_FINAL;
 
@@ -7,15 +8,15 @@ USE 	MySQL_FINAL;
 -- Bảng Giảng Viên
 		DROP 	TABLE IF EXISTS GiangVien;
 		CREATE 	TABLE GiangVien(
-		magv 		TINYINT UNSIGNED 	PRIMARY KEY,
+		magv 		TINYINT UNSIGNED 	AUTO_INCREMENT	PRIMARY KEY,
 		hoten 		varchar(50) 		NOT NULL,
 		luong		INT UNSIGNED		NOT NULL);
 
 
--- Tạo Bảng Giảng Viên
+-- Tạo Bảng Sinh Viên
 		DROP 	TABLE IF EXISTS SinhVien;
 		CREATE 	TABLE SinhVien(
-		masv		TINYINT UNSIGNED	PRIMARY KEY,
+		masv		TINYINT UNSIGNED	AUTO_INCREMENT	PRIMARY KEY,
 		hoten		varchar(50)			NOT NULL,
 		namsinh		DATE 				NOT NULL,
 		quequan		varchar(100)		NOT NULL);
@@ -24,7 +25,7 @@ USE 	MySQL_FINAL;
 -- Tạo Bảng Đề Tài
 		DROP 	TABLE IF EXISTS DeTai;
 		CREATE 	TABLE DeTai(
-		madt		TINYINT UNSIGNED	PRIMARY KEY,
+		madt		TINYINT UNSIGNED	AUTO_INCREMENT	PRIMARY KEY,
 		tendt 		varchar(50)			NOT NULL,
 		kinhphi		INT UNSIGNED		NOT NULL,
 		NoiThucTap	varchar(100)		NOT NUll);
@@ -33,7 +34,7 @@ USE 	MySQL_FINAL;
 -- Tạo Bảng Hướng Dẫn
 		DROP 	TABLE IF EXISTS HuongDan;
 		CREATE 	TABLE HuongDan(
-		id			TINYINT	UNSIGNED	PRIMARY KEY,
+		id			TINYINT	UNSIGNED	AUTO_INCREMENT	PRIMARY KEY,
 		masv		TINYINT UNSIGNED	NOT NULL UNIQUE KEY,
 		magv 		TINYINT UNSIGNED 	NOT NULL UNIQUE KEY,
 		madt		TINYINT UNSIGNED	NOT NULL UNIQUE KEY,
@@ -72,6 +73,11 @@ USE 	MySQL_FINAL;
 		(1,1,2,1,'D'),
 		(2,2,3,2,'D'),
 		(3,3,4,3,'T');
+
+SELECT * FROM HuongDan;
+SELECT * FROM GiangVien;
+SELECT * FROM SinhVien;
+SELECT * FROM DeTai;
 
 -- Question 2: Viết lệnh để
 -- a) Lấy tất cả các sinh viên chưa có đề tài hướng dẫn
