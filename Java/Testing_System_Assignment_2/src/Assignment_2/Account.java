@@ -1,6 +1,7 @@
 package Assignment_2;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public class Account {
 	int accountId;
@@ -10,5 +11,7 @@ public class Account {
 	Department department;
 	Position position;
 	LocalDate createDate;
-	Group[] groups;
+	List<Group> groups;
+	
+	
 }

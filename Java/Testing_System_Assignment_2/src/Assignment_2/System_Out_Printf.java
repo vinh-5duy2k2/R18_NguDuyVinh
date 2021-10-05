@@ -2,7 +2,9 @@ package Assignment_2;
 
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 public class System_Out_Printf {
@@ -102,66 +104,108 @@ public class System_Out_Printf {
 		group1.groupName = "ManchesTer United";
 		group1.creator = account4;
 		group1.createDate = LocalDate.of(2020, 8, 12);
+		group1.accounts = new ArrayList<Account>();
 
 		Group group2 = new Group();
 		group2.groupId = 2;
 		group2.groupName = "ManchesTer City";
 		group2.creator = account2;
 		group2.createDate = LocalDate.of(2020, 1, 2);
-
+		group2.accounts = new ArrayList<Account>();
+		
 		Group group3 = new Group();
 		group3.groupId = 3;
 		group3.groupName = "Liverpool";
 		group3.creator = account3;
 		group3.createDate = LocalDate.of(2020, 5, 20);
+		group3.accounts = new ArrayList<Account>();
 
 		Group group4 = new Group();
 		group4.groupId = 4;
 		group4.groupName = "Leed United";
 		group4.creator = account4;
 		group4.createDate = LocalDate.of(2020, 12, 15);
+		group4.accounts = new ArrayList<Account>();
 
 		Group group5 = new Group();
 		group5.groupId = 5;
 		group5.groupName = "Arsenal";
 		group5.creator = account5;
 		group5.createDate = LocalDate.of(2020, 11, 4);
+		group5.accounts = new ArrayList<Account>();
 
-		Group[] groupOfAccount1 = { group1, group3, group4, group5 };
-		account1.groups = groupOfAccount1;
-
-		Group[] groupOfAccount2 = { group1, group2, group5 };
-		account2.groups = groupOfAccount2;
-
-		Group[] groupOfAccount3 = { group1, group2, group3 };
-		account3.groups = groupOfAccount3;
-
-		Group[] groupOfAccount4 = { group1, group2, group3, group5 };
-		account4.groups = groupOfAccount4;
-
-		Group[] groupOfAccount5 = { group3, group4, group5 };
-		account5.groups = groupOfAccount5;
-
-		Group[] groupOfAccount6 = { group4, group5 };
-		account6.groups = groupOfAccount6;
-
-		Account[] accountOfGroup1 = { account1, account2, account3, account4 };
-		group1.accounts = accountOfGroup1;
-
-		Account[] accountOfGroup2 = { account2, account3, account4 };
-		group2.accounts = accountOfGroup2;
-
-		Account[] accountOfGroup3 = { account1, account5, account3, account4 };
-		group3.accounts = accountOfGroup3;
-
-		Account[] accountOfGroup4 = { account1, account6, account5, account4 };
-		group4.accounts = accountOfGroup4;
-
-		Account[] accountOfGroup5 = { account1, account2, account5, account6 };
-		group5.accounts = accountOfGroup5;
-
-		Account danhSachAccount[] = { account1, account2, account3, account4, account5, account6 };
-		Group danhSachGroup[] = { group1, group2, group3, group4, group5 };
+//		Danh sách các account trong mỗi group
+		group1.accounts.add(account1);
+		group1.accounts.add(account2);
+		group1.accounts.add(account3);
+		group1.accounts.add(account4);
+		
+		group2.accounts.add(account2);
+		group2.accounts.add(account3);
+		group2.accounts.add(account4);
+		
+		group3.accounts.add(account1);
+		group3.accounts.add(account5);
+		group3.accounts.add(account3);
+		group3.accounts.add(account4);
+		
+		group4.accounts.add(account1);
+		group4.accounts.add(account6);
+		group4.accounts.add(account5);
+		group4.accounts.add(account4);
+		
+		group5.accounts.add(account1);
+		group5.accounts.add(account2);
+		group5.accounts.add(account5);
+		group5.accounts.add(account6);
+		
+//		Danh sách các group trong mỗi Account
+		account1.groups = new ArrayList<Group>();
+		account1.groups.add(group1);
+		account1.groups.add(group3);
+		account1.groups.add(group4);
+		account1.groups.add(group5);
+		
+		account2.groups = new ArrayList<Group>();
+		account1.groups.add(group1);
+		account1.groups.add(group2);
+		account1.groups.add(group5);
+		
+		account3.groups = new ArrayList<Group>();
+		account1.groups.add(group1);
+		account1.groups.add(group2);
+		account1.groups.add(group3);
+		
+		account4.groups = new ArrayList<Group>();
+		account1.groups.add(group1);
+		account1.groups.add(group2);
+		account1.groups.add(group3);
+		account1.groups.add(group5);
+		
+		account5.groups = new ArrayList<Group>();
+		account1.groups.add(group3);
+		account1.groups.add(group4);
+		account1.groups.add(group5);
+		
+		account6.groups = new ArrayList<Group>();
+		account1.groups.add(group4);
+		account1.groups.add(group5);
+		
+// 		Danh sách account
+		List<Account> listAcc = new ArrayList<Account>();
+		listAcc.add(account6);
+		listAcc.add(account5);
+		listAcc.add(account4);
+		listAcc.add(account3);
+		listAcc.add(account2);
+		listAcc.add(account1);
+//		Danh sach Group
+		List<Group> listGroup = new ArrayList<Group>();
+		listGroup.add(group5);
+		listGroup.add(group4);
+		listGroup.add(group3);
+		listGroup.add(group2);
+		listGroup.add(group1);
 
 //	Question 1:
 //		Khai báo 1 số nguyên = 5 và sử dụng lệnh System out printf để in ra số
@@ -200,8 +244,10 @@ public class System_Out_Printf {
 //		In ra thông tin account (như Question 8 phần FOREACH) theo định dạng
 //		table (giống trong Database)
 		System.out.printf("%-20s \t %-20s \t %-10s \n","Email","FullName","Tên phòng ban");
-		for(int i=0;i<danhSachAccount.length;i++) {
-			System.out.printf("%-20s \t %-20s \t %-10s \n",danhSachAccount[i].email, danhSachAccount[i].fullName, danhSachAccount[i].department.departmentName);
+		for(int i=0;i<listAcc.size();i++) {
+			System.out.printf("%-20s \t %-20s \t %-10s \n",listAcc.get(i).email, listAcc.get(i).fullName,listAcc.get(i).department.departmentName);
 		}
 	}
 }
+	
+
